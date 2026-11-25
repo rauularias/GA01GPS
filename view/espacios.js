@@ -210,8 +210,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    form.addEventListener('submit', (evento) => { evento.preventDefault(); cargarEspacios(); });
-    form.addEventListener('reset', () => setTimeout(cargarEspacios, 0));
-    reintentar.addEventListener('click', cargarEspacios);
-    cargarEspacios();
+form.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+    cargarEspacios().catch(error => mensaje(error.message, true));
+});
+form.addEventListener('reset', () => setTimeout(cargarEspacios, 0));
+reintentar.addEventListener('click', cargarEspacios);
+cargarEspacios().catch(error => mensaje(error.message, true));
 });
