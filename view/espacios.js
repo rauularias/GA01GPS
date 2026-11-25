@@ -121,10 +121,13 @@ document.addEventListener('DOMContentLoaded', () => {
         accesoReserva.hidden = true;
         estadoReserva.textContent = '';
     });
-    consultar.addEventListener('click', () => tramitarReserva(false));
-    reservaForm.addEventListener('submit', (evento) => {
+
+    consultar.addEventListener('click', async () =>{
+        await tramitarReserva(false);
+    });
+    reservaForm.addEventListener('submit', async (evento) => {
         evento.preventDefault();
-        if (!confirmar.disabled) tramitarReserva(true);
+        if (!confirmar.disabled) await tramitarReserva(true);
     });
     cerrar.addEventListener('click', () => reservaDialogo.close());
     reservaDialogo.addEventListener('cancel', (evento) => {
